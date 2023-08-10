@@ -1,4 +1,4 @@
---###Query for Covid-19 cases recorded around the world, Using Nigeria as case study.
+###Query for COVID-19 cases recorded around the world, Using Nigeria as a case study.
 ##Possibility of a person dying if he contracts covid-19 in Nigeria
 select 
   location, 
@@ -17,7 +17,8 @@ group by
   location, 
   date, 
   total_cases, 
-  total_deaths ##percentage of population that contracted covid in Nigeria
+  total_deaths 
+##percentage of the population that contracted covid in Nigeria
 select 
   location, 
   date, 
@@ -38,7 +39,8 @@ group by
   location, 
   date, 
   total_cases, 
-  population ##country with highest infection rate compared to population
+  population 
+##country with highest infection rate compared to the population
 select 
   DISTINCT (location) as dis_location, 
   population, 
@@ -56,7 +58,7 @@ GROUP BY
   total_cases 
 order by 
   IPP DESC 
- --Country with the highest infection rate with respect to their population
+##Country with the highest infection rate with respect to their population
 Select 
   Location, 
   population, 
@@ -78,7 +80,7 @@ GROUP BY
   Population 
 order by 
   IPP desc 
- --Country with the highest death rate with respect to their population
+##Country with the highest death rate with respect to their population
 select 
   Location, 
   population, 
@@ -102,7 +104,8 @@ select
 from 
   Portfolio_Project..CovidDeaths 
 where 
-  continent is not null --query by continent
+  continent is not null 
+##query by continent
 select 
   continent, 
   max(
@@ -134,7 +137,7 @@ GROUP BY
   continent 
 order by 
   highestdeathcount 
---Global New_cases to new_death Per day Query
+###Global New_cases to new_death Per day Query
 SELECT 
   date, 
   (
@@ -164,7 +167,7 @@ FROM
       and new_cases > 0 
       and new_deaths > 0
   ) GLOBAL 
- --Global new_death to New_cases Per day Query
+ ##Global new_death to New_cases Per day Query
 SELECT 
   --date,
   (
@@ -191,7 +194,8 @@ FROM
     WHERE 
       CONTINENT IS NOT NULL --WHERE new_cases is not null and new_deaths is not null
       --and new_cases > 0 and new_deaths > 0
-      ) GLOBAL --GCP AND GDP
+      ) GLOBAL
+##GCP AND GDP
 SELECT 
   date, 
   (
@@ -238,7 +242,8 @@ where
   continent is not null 
 order by 
   1, 
-  2 --Query total population vs Vaccinations
+  2 
+  ##Query total population vs Vaccinations
   WITH PopvsVac (
     continent, location, date, population, 
     new_vaccinations, RollingPopulationVaccinated
@@ -276,7 +281,8 @@ group by
   population, 
   date, 
   new_vaccinations, 
-  RollingPopulationVaccinated --Temp Table
+  RollingPopulationVaccinated 
+  --Temp Table
 Drop 
   table if exists #PopvsVac  
   Create table #PopvsVac
